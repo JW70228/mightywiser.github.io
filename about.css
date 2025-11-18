@@ -1,0 +1,161 @@
+.about-section {
+    width: 100%;
+    margin: 6rem auto 1rem auto;
+    padding: 2rem;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 4rem;
+}
+
+.about-left {
+    border-radius: 1rem;
+    flex: 1.2;
+    background: #fff;               /* 让阴影可见（必要） */
+    border-radius: 12px;            /* 优雅一点的圆角 */
+    padding: 2rem;                  /* 内间距必须加，否则内容贴边 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);  /* ⭐ 超轻柔阴影 */
+}
+
+.about-right,
+.about-stats {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.about-tag {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #eef3ff;
+    color: #4a5c82;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.about-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #D7D261;
+}
+
+.about-text {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    color: #444;
+}
+
+.stat-card {
+    background: #f5f7fa;
+    padding: 2.2rem 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+}
+
+.stat-card h3 {
+    font-size: 1.8rem;
+    color: #D7D261;
+    margin-bottom: 0.3rem;
+}
+
+.stat-card p {
+    color: #4a5c82;
+    font-size: 1rem;
+}
+
+.map-wrapper {
+    grid-column: span 2;                    /* 占 2 列宽 */
+    background: #fff;                        /* 卡片背景 */
+    border-radius: 15px;                     /* 圆角 */
+    padding: 1rem;                           /* 内边距，让 iframe 不贴边 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); /* ⭐ 超轻阴影，和 about-left 统一 */
+    transition: transform 0.25s ease, 
+                box-shadow 0.25s ease;       /* 动画 */
+}
+
+.map-wrapper h3{
+    color: #292623;
+}
+
+/* 🌟 Hover 微微放大效果（和卡片一致） */
+.map-wrapper:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- TEAM SECTION ---------- */
+
+.team-section {
+    width: 100%;;
+    margin: 1rem auto 8rem auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.team-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f1f1f;
+    margin-bottom: 1rem;
+}
+
+.team-subtitle {
+    font-size: 1rem;
+    color: #4a5c82;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 3rem;
+}
+
+.team-member {
+    padding: 2rem;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    transition: 0.25s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+}
+
+.team-member img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    border: 6px solid #eef3ff;
+}
+
+.team-member h3 {
+    font-size: 1.2rem;
+    color: #1f1f1f;
+    margin-bottom: 0.4rem;
+}
+
+.team-member .role {
+    color: #4a5c82;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+}
+
+.team-member .desc {
+    font-size: 0.95rem;
+    color: #4a5c82;
+    line-height: 1.6;
+}

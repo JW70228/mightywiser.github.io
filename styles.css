@@ -34,7 +34,7 @@ html, body {
 
 .nav-container {
     width: 100%;
-    max-width: 100rem;        /* 1300px → 81.25rem */
+    max-width: 140rem;        /* 1300px → 81.25rem */
     margin: 0 auto;
     padding: 0 3rem;
     display: flex;
@@ -54,6 +54,7 @@ html, body {
 .nav-links {
     display: flex;
     gap: 3rem;
+    align-items: center; 
 }
 
 .nav-links a {
@@ -62,6 +63,22 @@ html, body {
     text-decoration: none;
     font-family: "MiSans VF Regular", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     transition: color 0.25s ease;
+}
+
+.nav-links a.contact-btn {
+    background: #d9d56a;
+    padding: 0.7rem 1.5rem;
+    border-radius: 0.3rem;
+    color: #000 !important;
+    font-weight: 600;
+
+    /* 背景+文字颜色都加动画 */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-links a.contact-btn:hover {
+    background-color: #DFDACB;
+    color: #000;
 }
 
 .nav-links a:hover {
@@ -170,6 +187,14 @@ html, body {
     line-height: 1.2;
     font-family: "MiSans VF Regular", system-ui, sans-serif;
     font-weight: 700;
+}
+
+.hero-content h2 {
+    color: var(--text);
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-family: "MiSans VF Regular", system-ui, sans-serif;
+    font-weight: 400;
 }
 
 /* ===== Hero 按钮（div） ===== */
@@ -731,12 +756,14 @@ html, body {
    ============================ */
 
 footer {
+    background-color: #fffcf5;
     margin-top: 4rem;
     font-family: "MiSans VF Regular", system-ui, sans-serif;
 }
 
 /* --- 上半部分（白色） --- */
 .footer-main {
+    
     width: 100%;
     max-width: 1800px;
     margin: 0 auto;
@@ -838,6 +865,7 @@ footer {
         font-size: 1.25rem;
     }
 }
+
 
 
 
