@@ -50,6 +50,16 @@ html, body {
     object-fit: contain;
 }
 
+/* Logo hover 动画 */
+.logo a img {
+    transition: transform 0.25s ease;
+}
+
+.logo a:hover img {
+    transform: scale(1.2); /* 微微放大 5% */
+}
+
+
 /* ===== Desktop 菜单 ===== */
 .nav-links {
     display: flex;
@@ -59,7 +69,7 @@ html, body {
 
 .nav-links a {
     color: var(--text);
-    font-size: 1rem;
+    font-size: 1.5rem;
     text-decoration: none;
     font-family: "MiSans VF Regular", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     transition: color 0.25s ease;
@@ -710,6 +720,7 @@ html, body {
    ================================ */
 
 .scroll-gallery {
+    margin-bottom: 8rem;
     width: 100%;
     overflow: hidden;        /* 关键：隐藏超出的部分 */
     padding: 2rem 0;         /* 上下留白一致 */
@@ -757,7 +768,7 @@ html, body {
 
 footer {
     background-color: #fffcf5;
-    margin-top: 4rem;
+    
     font-family: "MiSans VF Regular", system-ui, sans-serif;
 }
 
@@ -823,6 +834,8 @@ footer {
     opacity: 0.8;
     transition: opacity 0.25s ease;
 }
+
+
 
 .footer-social img:hover {
     opacity: 1;

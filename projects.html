@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIGHTYWISER</title>
+    <link rel="stylesheet" href="styles.css">   <!-- 导航栏 + footer + 全站通用 -->
+    <link rel="stylesheet" href="project.css">   <!-- about 页面专用 -->
+
+
+    <!-- MiSans 字体（本地引入 or CDN） -->
+    <link href="https://fonts.cdnfonts.com/css/misans" rel="stylesheet">
+
+</head>
+<body>
+
+<header class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">
+                <img src="img/logo.png" alt="logo">
+            </a>
+        </div>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact_us.html" class="contact-btn">Contact Us</a>
+        </nav>
+
+        <!-- Mobile hamburger -->
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <!-- Mobile slide menu -->
+    <div class="mobile-menu">
+        <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="#">Services</a>
+            <a href="#">Projects</a>
+            <a href="#">Contact Us</a>
+    </div>
+</header>
+
+<!-- ===== PROJECTS SECTION ===== -->
+<!-- ===== PROJECTS SECTION ===== -->
+<section class="projects-section">
+
+    <!-- ----- Header 部分 ----- -->
+    <div class="projects-header">
+        <span class="projects-tag">OUR PROJECTS</span>
+        <h2>Building Excellence Across Auckland</h2>
+        <p>
+            Explore our portfolio of successfully completed projects showcasing 
+            our commitment to quality and precision.
+        </p>
+    </div>
+
+    <!-- ----- Projects Grid ----- -->
+    <div class="projects-grid">
+
+        <!-- 1 -->
+        <div class="project-card" data-bg="img/b1.jpg">
+    <span class="project-label residential">Residential</span>
+
+    <div class="project-info">
+        <h3>Modern Residential Complex</h3>
+        <p>Auckland Central</p>
+    </div>
+</div>
+
+<div class="project-card" data-bg="img/b1.jpg">
+    <span class="project-label commercial">Commercial</span>
+
+    <div class="project-info">
+        <h3>Commercial Office Building</h3>
+        <p>Auckland CBD</p>
+    </div>
+</div>
+
+<div class="project-card" data-bg="img/b1.jpg">
+    <span class="project-label residential">Residential</span>
+
+    <div class="project-info">
+        <h3>Residential Construction</h3>
+        <p>North Shore</p>
+    </div>
+</div>
+
+<div class="project-card" data-bg="img/b1.jpg">
+    <span class="project-label industrial">Industrial</span>
+
+    <div class="project-info">
+        <h3>Industrial Warehouse</h3>
+        <p>West Auckland</p>
+    </div>
+</div>
+
+<div class="project-card" data-bg="img/b1.jpg">
+    <span class="project-label commercial">Commercial</span>
+
+    <div class="project-info">
+        <h3>High-Rise Construction</h3>
+        <p>Auckland City</p>
+    </div>
+</div>
+
+<div class="project-card" data-bg="img/b1.jpg">
+    <span class="project-label supply">Supply Chain</span>
+
+    <div class="project-info">
+        <h3>Material Supply Center</h3>
+        <p>Auckland</p>
+    </div>
+</div>
+
+
+    </div>
+
+</section>
+
+
+
+<footer>
+
+    <!-- ========== 上半部分（白色） ========== -->
+    <div class="footer-main">
+        <div class="footer-col brand">
+            <h3>MIGHTYWISER</h3>
+            <p>Descriptive line about what your company does.</p>
+
+            <div class="footer-social">
+                <img src="img/instagram.png" alt="">
+                <a href="https://www.linkedin.com/company/109632428/admin/dashboard/" target="_blank">
+                    <img src="img/linkedin.png" alt="LinkedIn">
+                </a>
+                
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Features</h4>
+            <a href="#">Core features</a>
+            <a href="#">Pro experience</a>
+            <a href="#">Integrations</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Learn more</h4>
+            <a href="#">Blog</a>
+            <a href="#">Case studies</a>
+            <a href="#">Customer stories</a>
+            <a href="#">Best practices</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Support</h4>
+            <a href="#">Contact</a>
+            <a href="#">Support</a>
+            <a href="#">Legal</a>
+        </div>
+    </div>
+
+    <!-- ========== 下半部分（黄色背景） ========== -->
+    <div class="footer-bottom">
+        <p>Let’s work together</p>
+
+        <div class="footer-social">
+            <img src="img/instagram.png" alt="">
+            <a href="https://www.linkedin.com/company/109632428/admin/dashboard/" target="_blank">
+                <img src="img/linkedin.png" alt="LinkedIn">
+            </a>
+
+            
+        </div>
+    </div>
+
+</footer>
+
+<script>
+document.querySelectorAll('.project-card').forEach(card => {
+    const bg = card.getAttribute('data-bg');
+    card.style.backgroundImage = `url(${bg})`;
+});
+</script>
+
+</body>
+</html>

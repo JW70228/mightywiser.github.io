@@ -1,0 +1,229 @@
+/* ===== Section Layout ===== */
+.projects-section {
+    width: 80%;
+    margin: 10rem auto;
+    padding: 10rem 2rem;
+    font-family: "MiSans VF Regular", system-ui, sans-serif;
+}
+
+/* ----- Header 部分 ----- */
+.projects-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.projects-tag {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    background: #f4f4e5;
+    color: #7a7a5c;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    letter-spacing: 1px;
+}
+
+.projects-header h2 {
+    margin: 1rem 0;
+    font-size: 3rem;
+    font-weight: 800;
+    color: #333;
+}
+
+.projects-header p {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* ===== Grid 部分 ===== */
+.projects-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+
+/* ===== 卡片（Card） ===== */
+.project-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 35px rgba(0,0,0,0.18);
+}
+
+/* 图片固定 4:3（关键！） */
+.project-img {
+    width: 100%;
+    aspect-ratio: 2 / 1;
+    overflow: hidden;
+}
+
+.project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 文本部分 */
+.project-content {
+    padding: 1.8rem;
+}
+
+.project-content h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.project-content p {
+    color: #666;
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
+.project-icon {
+    width: 48px;
+    height: 48px;
+    background: #f6f7e8;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+/* 手机端 1 列 */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+/* ===========================
+   WHY CHOOSE US — Dark Section
+   =========================== */
+
+.why-section {
+    background: #1e1c19; /* 深色背景 */
+    padding: 8rem 0;
+    color: #f6f6f4;
+}
+
+/* Header */
+.why-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.why-tag {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    background: #d7d26130;
+    color: #d7d261;
+    font-size: 0.9rem;
+    border-radius: 5px;
+}
+
+.why-header h2 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin: 1rem 0;
+}
+
+.why-header p {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    color: #ccc;
+}
+
+/* Grid */
+.why-grid {
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+
+.why-card {
+    background: #24221f;
+    padding: 2.5rem;
+    border-radius: 12px;
+    border: 1px solid #3a3733;
+    transition: 0.25s ease;
+}
+
+.why-card:hover {
+    transform: translateY(-5px);
+    background: #2b2925;
+}
+
+/* ICON */
+.why-icon {
+    width: 54px;
+    height: 54px;
+    padding: 12px;
+    background: #d7d26125;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.why-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.why-card p {
+    color: #bbb;
+    line-height: 1.6;
+}
+
+/* Banner */
+.why-banner {
+    margin-top: 5rem;
+    padding: 3rem 2rem;
+    background: #3b3a22;
+    border-left: 6px solid #d7d261;
+    text-align: center;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+}
+
+.why-banner h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.why-banner p {
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.7;
+    color: #e6e6e6;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .why-section {
+        padding: 5rem 0;
+    }
+
+    .why-banner {
+        width: 90%;
+    }
+}
+

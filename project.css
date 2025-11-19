@@ -1,0 +1,114 @@
+/* SECTION LAYOUT */
+.projects-section {
+    width: 80%;
+    margin: 10rem auto;
+    padding: 10rem 2rem;
+    font-family: "MiSans VF Regular", system-ui, sans-serif;
+}
+
+/* HEADER */
+.projects-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.projects-tag {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    background: #f4f4e5;
+    color: #7a7a5c;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    letter-spacing: 1px;
+}
+
+.projects-header h2 {
+    margin: 1rem 0;
+    font-size: 3rem;
+    font-weight: 800;
+    color: #333;
+}
+
+.projects-header p {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* GRID */
+.projects-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+
+/* CARD */
+.project-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+
+    /* ★ 统一背景图片 */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    /* ★ 4:3 固定比例（完全不会出白边） */
+    aspect-ratio: 4 / 3;
+
+    /* 阴影 & 动画 */
+    box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+}
+
+/* 标签 */
+.project-label {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 0.35rem 0.8rem;
+    background: rgba(215,210,97,0.9);
+    color: #333;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* 文本 overlay */
+.project-info {
+    position: absolute;
+    bottom: 1.2rem;
+    left: 1.2rem;
+    color: white;
+}
+
+.project-info h3 {
+    margin: 0 0 0.3rem 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.project-info p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* JS 自动读取 data-bg 设置背景图 */
+.project-card[data-bg] {
+    background-image: var(--bg-img);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
