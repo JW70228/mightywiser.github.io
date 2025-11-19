@@ -156,7 +156,7 @@
 }
 
 .team-member {
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 16px;
     background: #fff;
     box-shadow: 0 4px 20px rgba(0,0,0,0.04);
@@ -169,8 +169,8 @@
 }
 
 .team-member img {
-    width: 180px;
-    height: 180px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
     border-radius: 50%;
     margin-bottom: 1.5rem;
