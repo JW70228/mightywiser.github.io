@@ -146,20 +146,20 @@
     </div>
 </section>
 
-<section class="scroll-gallery">
-    <div class="scroll-track">
-        <img src="img/b3.jpg" alt="">
-        <img src="img/b4.jpg" alt="">
-        <img src="img/b1.jpg" alt="">
-        <img src="img/b2.jpg" alt="">
+<!-- ================================
+     无限横向滚动图片区（新版无缝）
+================================ -->
 
-        <!-- 重复一份，实现无缝循环 -->
-        <img src="img/b3.jpg" alt="">
-        <img src="img/b4.jpg" alt="">
-        <img src="img/b1.jpg" alt="">
-        <img src="img/b2.jpg" alt="">
+<section class="scroll-gallery">
+    <div class="scroll-track" id="scroll-track">
+        <img src="img/b3.jpg">
+        <img src="img/b4.jpg">
+        <img src="img/b1.jpg">
+        <img src="img/b2.jpg">
     </div>
 </section>
+
+
 
 <footer>
 
@@ -219,6 +219,56 @@
 
 
 <script src="js/nav.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const track = document.getElementById("scroll-track");
+    const speed = 0.5;
+
+    // ⭐ 正确地计算第一套图的真实宽度（含 gap）
+    function getOriginalWidth() {
+        let width = 0;
+        [...track.children].forEach(img => {
+            const rect = img.getBoundingClientRect();
+            width += rect.width;
+        });
+
+        // 再加上 gap（每张之间 2rem = 32px）
+        const gap = parseFloat(getComputedStyle(track).gap || 0);
+        width += gap * (track.children.length - 1);
+
+        return width;
+    }
+
+    const originalWidth = getOriginalWidth();
+
+    // ⭐ 克隆一套
+    const cloneNodes = [...track.children].map(n => n.cloneNode(true));
+    cloneNodes.forEach(node => track.appendChild(node));
+
+    let pos = 0;
+
+    function loop() {
+        pos -= speed;
+
+        // ⭐ 超过第一套总宽度 → 重置
+        if (Math.abs(pos) >= originalWidth) {
+            pos = 0;
+        }
+
+        track.style.transform = `translateX(${pos}px)`;
+        requestAnimationFrame(loop);
+    }
+
+    loop();
+});
+
+</script>
+
+
+
+
+
 
 </body>
 </html>

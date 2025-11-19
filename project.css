@@ -1,4 +1,7 @@
-/* SECTION LAYOUT */
+/* ================================
+   PROJECTS SECTION
+================================ */
+
 .projects-section {
     width: 80%;
     margin: 10rem auto;
@@ -44,29 +47,55 @@
     gap: 2.5rem;
 }
 
-/* CARD */
+/* ================================
+   PROJECT CARD — 最新优化版
+================================ */
+
 .project-card {
     position: relative;
     border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
 
-    /* ★ 统一背景图片 */
+    aspect-ratio: 4 / 3;
+
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 
-    /* ★ 4:3 固定比例（完全不会出白边） */
-    aspect-ratio: 4 / 3;
-
-    /* 阴影 & 动画 */
     box-shadow: 0 6px 25px rgba(0,0,0,0.15);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: box-shadow 0.25s ease;
 }
 
+/* Hover 阴影加强 */
 .project-card:hover {
-    transform: translateY(-6px);
     box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+}
+
+/* 背景图层（放大动画 + 黑色滤镜） */
+.project-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-size: inherit;
+    background-position: inherit;
+    background-repeat: inherit;
+    background-image: inherit;
+
+    /* 黑色滤镜（你可以改 0.15 → 深一点） */
+    filter: brightness(0.85);
+
+    transform: scale(1);
+    transition: transform 0.45s ease, filter 0.3s ease;
+
+    z-index: 1;
+}
+
+/* Hover 时背景轻微放大，滤镜稍微加深 */
+.project-card:hover::before {
+    transform: scale(1.06);
+    filter: brightness(0.75); /* 稍暗一点，让字更清晰 */
 }
 
 /* 标签 */
@@ -74,20 +103,27 @@
     position: absolute;
     top: 1rem;
     left: 1rem;
+
     padding: 0.35rem 0.8rem;
     background: rgba(215,210,97,0.9);
     color: #333;
+
     border-radius: 6px;
     font-size: 0.85rem;
     font-weight: 600;
+    z-index: 5;
 }
 
-/* 文本 overlay */
+/* 文本区 */
 .project-info {
     position: absolute;
     bottom: 1.2rem;
     left: 1.2rem;
+
     color: white;
+    z-index: 5;
+
+    transition: transform 0.35s ease; /* ★ 文本动画 */
 }
 
 .project-info h3 {
@@ -101,9 +137,8 @@
     opacity: 0.9;
 }
 
-/* JS 自动读取 data-bg 设置背景图 */
-.project-card[data-bg] {
-    background-image: var(--bg-img);
+.project-card:hover .project-info {
+    transform: translateY(-6px);
 }
 
 /* Mobile */

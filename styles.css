@@ -716,51 +716,41 @@ html, body {
 }
 
 /* ================================
-   无限横向滚动图片区
+   无限横向滚动图片区（修正版）
    ================================ */
 
 .scroll-gallery {
-    margin-bottom: 8rem;
+    overflow: hidden;
     width: 100%;
-    overflow: hidden;        /* 关键：隐藏超出的部分 */
-    padding: 2rem 0;         /* 上下留白一致 */
+    padding: 2rem 0;
+    margin-bottom: 6rem;
 }
 
 .scroll-track {
     display: flex;
     gap: 2rem;
-    animation: scroll-left 30s linear infinite;
+    will-change: transform;
 }
 
 .scroll-track img {
-    width: 350px;            /* 你图的理想宽度 */
-    height: auto;
+    width: 350px;
     border-radius: 15px;
-    flex-shrink: 0;          /* 不允许被压缩 */
+    flex-shrink: 0;
     object-fit: cover;
     box-shadow: 0 6px 20px rgba(0,0,0,0.1);
 }
 
-/* 无限滚动动画 */
-@keyframes scroll-left {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-/* ================================
-   手机端优化
-   ================================ */
-
 @media (max-width: 768px) {
     .scroll-track img {
-        width: 70%;          /* 手机显示更大 */
+        width: 70%;
     }
-
     .scroll-track {
         gap: 1rem;
-        animation-duration: 25s; /* 手机滚动更慢 */
     }
 }
+
+
+
 
 /* ============================
    Footer （白色 + 黄色）

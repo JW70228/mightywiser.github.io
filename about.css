@@ -1,3 +1,37 @@
+/* ===== Hero Section ===== */
+.hero1 {
+    width: 100%;
+    height: 60vh;                               /* 你可调整成 80vh 或 90vh */
+    background-image: url("img/about_bg.png");        /* 已替换成 b5.png */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    position: relative;
+    margin-top: 8rem; /* 刚好避开导航栏高度 */
+}
+
+.hero1-content h1 {
+    color: var(--text);
+    font-size: 3.8rem;
+    line-height: 1.2;
+    font-family: "MiSans VF Regular", system-ui, sans-serif;
+    font-weight: 700;
+}
+
+.hero1-content h2 {
+    color: var(--text);
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-family: "MiSans VF Regular", system-ui, sans-serif;
+    font-weight: 400;
+}
+
 .about-section {
     width: 100%;
     margin: 6rem auto 1rem auto;
@@ -43,6 +77,7 @@
 }
 
 .about-text {
+    margin-top: 4rem;
     margin-bottom: 1.5rem;
     line-height: 1.8;
     color: #444;

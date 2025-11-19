@@ -1,7 +1,7 @@
 /* ===== Section Layout ===== */
 .projects-section {
     width: 80%;
-    margin: 10rem auto;
+    margin: 10rem auto 1rem auto;
     padding: 10rem 2rem;
     font-family: "MiSans VF Regular", system-ui, sans-serif;
 }
