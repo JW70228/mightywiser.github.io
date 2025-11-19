@@ -151,7 +151,7 @@
 
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 3rem;
 }
 
@@ -174,7 +174,7 @@
     object-fit: cover;
     border-radius: 50%;
     margin-bottom: 1.5rem;
-    border: 6px solid #eef3ff;
+    border: 2px solid #252527;
 }
 
 .team-member h3 {
