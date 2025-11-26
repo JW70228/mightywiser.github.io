@@ -44,50 +44,124 @@
     gap: 2.5rem;
 }
 
-/* ===== 卡片（Card） ===== */
+/* ===== 1. 最外层：3D 舞台 (Scene) ===== */
 .project-card {
-    background: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 6px 25px rgba(0,0,0,0.12);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    background-color: transparent; /* 背景透明，让 inner 决定颜色 */
+    perspective: 1000px; /* 开启 3D 空间感 */
+    cursor: pointer;
+    height: auto; 
+    /* 恢复或添加过渡效果，用于处理 translateY 的上浮动画 */
+    transition: transform 0.25s ease; 
 }
 
-.project-card:hover {
+/* ===== 2. 中间层：负责旋转 (Wrapper) ===== */
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    transition: transform 0.6s; /* 翻转动画时间 */
+    transform-style: preserve-3d; /* 关键：保留子元素的 3D 空间 */
+}
+
+/* JS 会切换这个类来实现翻转 */
+.project-card.is-flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* ===== 3. 内层：正面和背面公共样式 (Faces) ===== */
+.card-front, .card-back {
+    width: 100%;
+    /* 背面必须绝对定位，才能和正面重叠 */
+    backface-visibility: hidden; /* 关键：背对屏幕时隐藏 */
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+    overflow: hidden; /* 圆角裁切 */
+    background: #fff;
+    
+    /* 确保阴影和过渡效果在这里定义，以便它们能随着 hover 一起变化 */
+    transition: box-shadow 0.25s ease;
+}
+
+/* --- 正面样式 (Front) --- */
+.card-front {
+    z-index: 2;
+    transform: rotateY(0deg); /* 默认角度 */
+}
+
+/* --- 背面样式 (Back) --- */
+.card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%; /* 填满容器 */
+    transform: rotateY(180deg); /* 默认就已经转过去了 */
+    
+    /* 背面内容的排版 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: #333; /* 背面颜色 */
+    color: #fff;      /* 文字白色 */
+    text-align: center;
+}
+
+/* 背面内容的一些简单样式 */
+.card-back h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+.card-back .back-btn {
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.5rem;
+    background: #ff6b6b;
+    border: none;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* 🚀 交互优化：只有未翻转时，卡片才会上浮 */
+.project-card:hover:not(.is-flipped) {
     transform: translateY(-5px);
+}
+
+/* 🚀 交互优化：只有未翻转时，卡面的阴影才会加深 */
+.project-card:hover:not(.is-flipped) .card-front,
+.project-card:hover:not(.is-flipped) .card-back {
     box-shadow: 0 10px 35px rgba(0,0,0,0.18);
 }
 
-/* 图片固定 4:3（关键！） */
+
+/* ===== 图片部分 (保留原有的所有样式) ===== */
 .project-img {
     width: 100%;
     aspect-ratio: 2 / 1;
     overflow: hidden;
 }
-
 .project-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-/* 文本部分 */
+/* ===== 文本部分 (保留原有的所有样式) ===== */
 .project-content {
     padding: 1.8rem;
 }
-
 .project-content h3 {
     font-size: 1.3rem;
     font-weight: 700;
     margin-bottom: 1rem;
+    color: #333;
 }
-
 .project-content p {
     color: #666;
     font-size: 0.98rem;
     line-height: 1.6;
 }
-
 .project-icon {
     width: 48px;
     height: 48px;
@@ -97,7 +171,7 @@
     margin-bottom: 1rem;
 }
 
-/* 手机端 1 列 */
+/* 手机端 */
 @media (max-width: 768px) {
     .projects-grid {
         grid-template-columns: 1fr;

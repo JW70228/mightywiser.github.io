@@ -63,37 +63,60 @@
     <!-- ===== Cards Grid 部分 ===== -->
     <div class="projects-grid">
 
-        <!-- 1 -->
-        <div class="project-card">
-            <div class="project-img"><img src="img/b1.jpg" alt=""></div>
-            <div class="project-content">
-                <img class="project-icon" src="img/house_icon.png" alt="">
-                <h3>Residential & Commercial</h3>
-                <p>Complete construction solutions including foundations, structure, interior renovation for houses, shops, and warehouses.</p>
+    <div class="project-card" onclick="flipCard(this)">
+        <div class="card-inner">
+            <div class="card-front">
+                <div class="project-img"><img src="img/b1.jpg" alt=""></div>
+                <div class="project-content">
+                    <img class="project-icon" src="img/house_icon.png" alt="">
+                    <h3>Residential & Commercial</h3>
+                    <p>Complete construction solutions including foundations, structure, interior renovation for houses, shops, and warehouses.</p>
+                </div>
+            </div>
+
+            <div class="card-back">
+                <h3>More Details</h3>
+                <p>这里可以写更多关于 Residential 的细节，或者放一个按钮。</p>
+                <button class="back-btn">View Project</button>
             </div>
         </div>
-
-        <!-- 2 -->
-        <div class="project-card">
-            <div class="project-img"><img src="img/service1.png" alt=""></div>
-            <div class="project-content">
-                <img class="project-icon" src="img/material_icon.png" alt="">
-                <h3>Integrated Material Supply</h3>
-                <p>Strict material selection, quality assurance, efficient communication, and reliable delivery for your projects.</p>
-            </div>
-        </div>
-
-        <!-- 3 -->
-        <div class="project-card">
-            <div class="project-img"><img src="img/shiping.png" alt=""></div>
-            <div class="project-content">
-                <img class="project-icon" src="img/delivery_icon.png" alt="">
-                <h3>Global Material Direct Supply</h3>
-                <p>Access to certified, sustainable, and eco-friendly building materials sourced directly from global suppliers.</p>
-            </div>
-        </div>
-
     </div>
+
+    <div class="project-card" onclick="flipCard(this)">
+        <div class="card-inner">
+            <div class="card-front">
+                <div class="project-img"><img src="img/service1.png" alt=""></div>
+                <div class="project-content">
+                    <img class="project-icon" src="img/material_icon.png" alt="">
+                    <h3>Integrated Material Supply</h3>
+                    <p>Strict material selection, quality assurance, efficient communication, and reliable delivery for your projects.</p>
+                </div>
+            </div>
+            <div class="card-back">
+                <h3>Supply Chain</h3>
+                <p>Details about logistics and supply chain management.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-card" onclick="flipCard(this)">
+        <div class="card-inner">
+            <div class="card-front">
+                <div class="project-img"><img src="img/shiping.png" alt=""></div>
+                <div class="project-content">
+                    <img class="project-icon" src="img/delivery_icon.png" alt="">
+                    <h3>Global Material Direct Supply</h3>
+                    <p>Access to certified, sustainable, and eco-friendly building materials sourced directly from global suppliers.</p>
+                </div>
+            </div>
+            <div class="card-back">
+                <h3>Global Sources</h3>
+                <p>Information about our global partners.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 </section>
 
@@ -232,6 +255,13 @@
 
 
 <script src="js/nav.js"></script>
+
+<script>
+    function flipCard(card) {
+    // toggle 意思是：有这个class就删掉，没有就加上
+    card.classList.toggle('is-flipped');
+}
+</script>
 
 </body>
 </html>

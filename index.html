@@ -152,10 +152,10 @@
 
 <section class="scroll-gallery">
     <div class="scroll-track" id="scroll-track">
-        <img src="img/b3.jpg">
-        <img src="img/b4.jpg">
-        <img src="img/b1.jpg">
-        <img src="img/b2.jpg">
+        <img src="img/b3.jpg" loading="eager">
+        <img src="img/b4.jpg" loading="eager">
+        <img src="img/b1.jpg" loading="eager">
+        <img src="img/b2.jpg" loading="eager">
     </div>
 </section>
 
@@ -221,48 +221,67 @@
 <script src="js/nav.js"></script>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+// 使用 window.onload 确保所有图片资源加载完毕，能获取真实宽度
+window.addEventListener("load", () => {
     const track = document.getElementById("scroll-track");
-    const speed = 0.5;
+    const speed = 1; // 调整速度
+    
+    // 1. 先克隆节点（只需要克隆一次，不要在 resize 里重复克隆）
+    const originalChildren = [...track.children];
+    originalChildren.forEach(node => track.appendChild(node.cloneNode(true)));
 
-    // ⭐ 正确地计算第一套图的真实宽度（含 gap）
-    function getOriginalWidth() {
+    let pos = 0;
+    let originalWidth = 0;
+    let animationFrameId;
+
+    // 2. 封装计算逻辑，支持响应式
+    function calculateWidth() {
         let width = 0;
-        [...track.children].forEach(img => {
-            const rect = img.getBoundingClientRect();
-            width += rect.width;
+        
+        // 只计算原始的那一组图片的宽度
+        originalChildren.forEach(img => {
+            width += img.getBoundingClientRect().width;
         });
 
-        // 再加上 gap（每张之间 2rem = 32px）
+        // 获取当前的 gap (无论是 2rem 还是 1rem)
         const gap = parseFloat(getComputedStyle(track).gap || 0);
-        width += gap * (track.children.length - 1);
+        
+        // ⭐ 核心修复：这里不再是 length - 1，而是 length
+        // 因为：[图1] gap [图2] gap [图3] gap [图4] (连接处需要跳过的 gap) [克隆图1]
+        width += gap * originalChildren.length;
 
         return width;
     }
 
-    const originalWidth = getOriginalWidth();
-
-    // ⭐ 克隆一套
-    const cloneNodes = [...track.children].map(n => n.cloneNode(true));
-    cloneNodes.forEach(node => track.appendChild(node));
-
-    let pos = 0;
+    // 初始化宽度
+    originalWidth = calculateWidth();
 
     function loop() {
         pos -= speed;
 
-        // ⭐ 超过第一套总宽度 → 重置
+        // ⭐ 当移动距离超过原始组总宽时，瞬间无缝复位
+        // 注意：使用 >= 可能会有微小抖动，处理浮点数建议给一点容错，但通常直接重置即可
         if (Math.abs(pos) >= originalWidth) {
-            pos = 0;
+            // 这里不能简单 pos = 0，为了超级平滑，要减去多跑出来的那部分
+            pos = pos + originalWidth; 
         }
 
-        track.style.transform = `translateX(${pos}px)`;
-        requestAnimationFrame(loop);
+        track.style.transform = `translate3d(${pos}px, 0, 0)`; // 使用 translate3d 开启硬件加速
+        animationFrameId = requestAnimationFrame(loop);
     }
 
+    // 启动动画
     loop();
-});
 
+    // 3. 监听窗口大小改变，重新计算宽度
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            originalWidth = calculateWidth();
+        }, 100); // 防抖
+    });
+});
 </script>
 
 
