@@ -719,37 +719,52 @@ html, body {
    无限横向滚动图片区（修正版）
    ================================ */
 
-.scroll-gallery {
-    overflow: hidden;
-    width: 100%;
-    padding: 2rem 0;
-    margin-bottom: 6rem;
+.img-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 450px;
+  margin-bottom: 6rem;
 }
 
-.scroll-track {
-    display: flex;
-    gap: 2rem;
-    will-change: transform;
+.img-item {
+  position: absolute;
+  width: 350px;
+  height: 450px;
+  border-radius: 15px;
+  object-fit: cover;
+
+  /* 初始位置在右侧（8 张图片） */
+  left: max(calc(350px * 8), 100%);
+
+  animation: slideLeft 25s linear infinite;
 }
 
-.scroll-track img {
-    width: 350px;
-    border-radius: 15px;
-    flex-shrink: 0;
-    object-fit: cover;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+@keyframes slideLeft {
+  to {
+    left: -350px;
+  }
 }
+
+/* 下面是关键：按照 8 张重算每个 delay */
+.i1 { animation-delay: calc(25s / 8 * (8 - 1) * -1); }
+.i2 { animation-delay: calc(25s / 8 * (8 - 2) * -1); }
+.i3 { animation-delay: calc(25s / 8 * (8 - 3) * -1); }
+.i4 { animation-delay: calc(25s / 8 * (8 - 4) * -1); }
+.i5 { animation-delay: calc(25s / 8 * (8 - 5) * -1); }
+.i6 { animation-delay: calc(25s / 8 * (8 - 6) * -1); }
+.i7 { animation-delay: calc(25s / 8 * (8 - 7) * -1); }
+.i8 { animation-delay: calc(25s / 8 * (8 - 8) * -1); }
+
 
 @media (max-width: 768px) {
     .scroll-track img {
-        width: 70%;
+        width: 90vw; /* 或 70%，但必须配合 margin-right */
+        /* 1rem 的像素值通常是 16px */
+        margin-right: 16px; 
     }
-    .scroll-track {
-        gap: 1rem;
-    }
+    /* .scroll-track { gap: 1rem; } <-- 移除 */
 }
-
-
 
 
 /* ============================

@@ -8,6 +8,7 @@
 
     <!-- MiSans 字体（本地引入 or CDN） -->
     <link href="https://fonts.cdnfonts.com/css/misans" rel="stylesheet">
+    <script src="js/nav.js"></script>
 
 </head>
 <body>
@@ -150,18 +151,25 @@
      无限横向滚动图片区（新版无缝）
 ================================ -->
 
-<section class="scroll-gallery">
-    <div class="scroll-track" id="scroll-track">
-        <img src="img/b3.jpg" loading="eager">
-        <img src="img/b4.jpg" loading="eager">
-        <img src="img/b1.jpg" loading="eager">
-        <img src="img/b2.jpg" loading="eager">
-    </div>
-</section>
+<div class="img-wrapper">
+  <!-- 第一轮 -->
+  <img src="img/b3.jpg" class="img-item i1">
+  <img src="img/b4.jpg" class="img-item i2">
+  <img src="img/b1.jpg" class="img-item i3">
+  <img src="img/b2.jpg" class="img-item i4">
+
+  <!-- 第二轮（复制的） -->
+  <img src="img/b3.jpg" class="img-item i5">
+  <img src="img/b4.jpg" class="img-item i6">
+  <img src="img/b1.jpg" class="img-item i7">
+  <img src="img/b2.jpg" class="img-item i8">
+</div>
 
 
 
-<footer>
+
+
+    <footer>
 
     <!-- ========== 上半部分（白色） ========== -->
     <div class="footer-main">
@@ -214,85 +222,68 @@
         </div>
     </div>
 
-</footer>
+    </footer>
 
-
-
-<script src="js/nav.js"></script>
-
-<script>
-// 使用 window.onload 确保所有图片资源加载完毕，能获取真实宽度
-window.addEventListener("load", () => {
+    <script>
+        window.addEventListener("load", () => {
+    const galleryContainer = document.querySelector('.scroll-gallery');
     const track = document.getElementById("scroll-track");
-    const speed = 1; 
-    
-    // 1. 先克隆节点
     const originalChildren = [...track.children];
-    // 确保克隆前获取原始长度 N
-    const N = originalChildren.length; 
+    
+    // 确保克隆一次
     originalChildren.forEach(node => track.appendChild(node.cloneNode(true)));
 
-    let pos = 0;
     let originalWidth = 0;
 
-    // 2. 封装计算逻辑，增加 Math.round() 消除浮点数误差
-    function calculateWidth() {
-        let width = 0;
+    function calculateAndSetWidth() {
+        let totalWidth = 0;
         
-        // 关键优化 A：对所有 width 进行 Math.round() 处理
+        // ⭐ 关键：计算原始集合的总宽度（包含 Margin）
         originalChildren.forEach(img => {
-            width += Math.round(img.getBoundingClientRect().width);
+            // 宽度 = 图片的宽度 + 右侧的 margin
+            const imgWidth = Math.ceil(img.getBoundingClientRect().width);
+            const marginStyle = getComputedStyle(img).marginRight || '0';
+
+            // 健壮地解析 Margin
+            const marginValueMatch = marginStyle.match(/[\d\.]+/);
+            const marginNumber = parseFloat(marginValueMatch ? marginValueMatch[0] : 0);
+            
+            // 假设 Margin 已经是像素值 (px)
+            const imgMargin = marginNumber; 
+
+            totalWidth += imgWidth + imgMargin;
         });
 
-        // 获取当前的 gap (无论是 2rem 还是 1rem)
-        const gapStyle = getComputedStyle(track).gap || '0';
+        // ⭐ 关键：最后，减去多余的 1 像素安全距离 (避免浏览器渲染过宽)
+        // 这一步是为了防止浏览器渲染时四舍五入导致多出一个像素。
+        totalWidth -= 1; 
         
-        // 更健壮的 gap 解析，以防 parseFloat 误读 '2rem'
-        const gap = parseFloat(gapStyle.match(/[\d\.]+/)?.[0] || 0) * (gapStyle.includes('rem') ? parseFloat(getComputedStyle(document.documentElement).fontSize) : 16) || 0;
-        
-        // 核心修正：N 个元素需要 N 个 Gap，并进行四舍五入
-        width += Math.round(gap * N);
-
-        return width;
+        // 关键：将计算出的总宽度设置为 CSS 变量
+        track.style.setProperty('--scroll-width', `-${totalWidth}px`);
+        return totalWidth;
     }
 
-    // 初始化宽度
-    originalWidth = calculateWidth();
+    // 1. 初始化宽度，设置 CSS 变量
+    calculateAndSetWidth();
+    
+    // 2. 启动 Keyframe 动画
+    track.classList.add('is-animating');
 
-    function loop() {
-        pos -= speed;
+    // 3. 延时显示内容
+    requestAnimationFrame(() => {
+        galleryContainer.classList.add('is-ready');
+    });
 
-        // ⭐ 关键优化 B：简化重置逻辑，消除浮点数比较误差
-        // 当滚动距离（负值）达到或超过负的原始宽度时，立刻重置到 0。
-        // 这是最稳定的重置方式，因为它消除了 pos = pos + width 带来的二次浮点运算。
-        if (pos <= -originalWidth) {
-            pos = 0; 
-        }
 
-        // 关键优化 C：使用 translate3d 开启硬件加速
-        track.style.transform = `translate3d(${pos}px, 0, 0)`; 
-        requestAnimationFrame(loop);
-    }
-
-    // 启动动画
-    loop();
-
-    // 3. 监听窗口大小改变，重新计算宽度
+    // 4. 监听窗口大小改变，重新计算并更新 CSS 变量
     let resizeTimer;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
-            // 重新计算宽度，消除响应式变化带来的误差
-            originalWidth = calculateWidth();
-        }, 100); // 防抖
+            calculateAndSetWidth();
+        }, 100); 
     });
 });
-</script>
-
-
-
-
-
-
+    </script>
 </body>
 </html>
