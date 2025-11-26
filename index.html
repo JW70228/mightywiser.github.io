@@ -224,31 +224,34 @@
 // 使用 window.onload 确保所有图片资源加载完毕，能获取真实宽度
 window.addEventListener("load", () => {
     const track = document.getElementById("scroll-track");
-    const speed = 1; // 调整速度
+    const speed = 1; 
     
-    // 1. 先克隆节点（只需要克隆一次，不要在 resize 里重复克隆）
+    // 1. 先克隆节点
     const originalChildren = [...track.children];
+    // 确保克隆前获取原始长度 N
+    const N = originalChildren.length; 
     originalChildren.forEach(node => track.appendChild(node.cloneNode(true)));
 
     let pos = 0;
     let originalWidth = 0;
-    let animationFrameId;
 
-    // 2. 封装计算逻辑，支持响应式
+    // 2. 封装计算逻辑，增加 Math.round() 消除浮点数误差
     function calculateWidth() {
         let width = 0;
         
-        // 只计算原始的那一组图片的宽度
+        // 关键优化 A：对所有 width 进行 Math.round() 处理
         originalChildren.forEach(img => {
-            width += img.getBoundingClientRect().width;
+            width += Math.round(img.getBoundingClientRect().width);
         });
 
         // 获取当前的 gap (无论是 2rem 还是 1rem)
-        const gap = parseFloat(getComputedStyle(track).gap || 0);
+        const gapStyle = getComputedStyle(track).gap || '0';
         
-        // ⭐ 核心修复：这里不再是 length - 1，而是 length
-        // 因为：[图1] gap [图2] gap [图3] gap [图4] (连接处需要跳过的 gap) [克隆图1]
-        width += gap * originalChildren.length;
+        // 更健壮的 gap 解析，以防 parseFloat 误读 '2rem'
+        const gap = parseFloat(gapStyle.match(/[\d\.]+/)?.[0] || 0) * (gapStyle.includes('rem') ? parseFloat(getComputedStyle(document.documentElement).fontSize) : 16) || 0;
+        
+        // 核心修正：N 个元素需要 N 个 Gap，并进行四舍五入
+        width += Math.round(gap * N);
 
         return width;
     }
@@ -259,15 +262,16 @@ window.addEventListener("load", () => {
     function loop() {
         pos -= speed;
 
-        // ⭐ 当移动距离超过原始组总宽时，瞬间无缝复位
-        // 注意：使用 >= 可能会有微小抖动，处理浮点数建议给一点容错，但通常直接重置即可
-        if (Math.abs(pos) >= originalWidth) {
-            // 这里不能简单 pos = 0，为了超级平滑，要减去多跑出来的那部分
-            pos = pos + originalWidth; 
+        // ⭐ 关键优化 B：简化重置逻辑，消除浮点数比较误差
+        // 当滚动距离（负值）达到或超过负的原始宽度时，立刻重置到 0。
+        // 这是最稳定的重置方式，因为它消除了 pos = pos + width 带来的二次浮点运算。
+        if (pos <= -originalWidth) {
+            pos = 0; 
         }
 
-        track.style.transform = `translate3d(${pos}px, 0, 0)`; // 使用 translate3d 开启硬件加速
-        animationFrameId = requestAnimationFrame(loop);
+        // 关键优化 C：使用 translate3d 开启硬件加速
+        track.style.transform = `translate3d(${pos}px, 0, 0)`; 
+        requestAnimationFrame(loop);
     }
 
     // 启动动画
@@ -278,6 +282,7 @@ window.addEventListener("load", () => {
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
+            // 重新计算宽度，消除响应式变化带来的误差
             originalWidth = calculateWidth();
         }, 100); // 防抖
     });
