@@ -1,8 +1,8 @@
 /* ===== Hero Section ===== */
 .hero1 {
     width: 100%;
-    height: 60vh;                               /* 你可调整成 80vh 或 90vh */
-    background-image: url("img/about_bg.png");        /* 已替换成 b5.png */
+    height: 70vh;
+    background-image: url("img/about_build1.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -13,184 +13,343 @@
     text-align: center;
 
     position: relative;
-    margin-top: 8rem; /* 刚好避开导航栏高度 */
+    margin-top: 8rem;
+    overflow: hidden;   /* 避免遮罩溢出 */
 }
 
+/* 加透明遮罩 */
+.hero1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(60, 60, 60, 0.087); /* 透明度在这里调，0.35=35%黑色遮罩 */
+    z-index: 1;
+}
+
+/* 让文字在遮罩上方 */
+.hero1 * {
+    position: relative;
+    z-index: 2;
+}
+
+
 .hero1-content h1 {
-    color: var(--text);
-    font-size: 3.8rem;
-    line-height: 1.2;
+    color: #ffffff;  /* 白色文字 */
+    font-size: 5rem;
+    line-height: 0.4;
     font-family: "MiSans VF Regular", system-ui, sans-serif;
-    font-weight: 700;
+    font-weight: 600;
+
+    /* 黑色阴影：柔和但明显 */
+    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
 }
 
 .hero1-content h2 {
-    color: var(--text);
-    font-size: 1.5rem;
+    color: #ffffff;  /* 白色文字 */
+    font-size: 3.8rem;
     line-height: 1.2;
     font-family: "MiSans VF Regular", system-ui, sans-serif;
     font-weight: 400;
+
+    /* 黑色阴影（稍弱一点但统一风格） */
+    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
 }
 
+
+/* ABOUT SECTION */
+/* 外层：整体左右布局 */
+/* 整体左右布局 */
 .about-section {
     width: 100%;
-    margin: 6rem auto 1rem auto;
-    padding: 2rem;
-    display: flex;
-    align-items: stretch;
-    justify-content: space-between;
-    gap: 4rem;
+    padding: 3rem 5rem;
+    margin-top: 8rem;
+    margin-bottom: 8rem;
 }
 
-.about-left {
-    border-radius: 1rem;
-    flex: 1.2;
-    background: #fff;               /* 让阴影可见（必要） */
-    border-radius: 12px;            /* 优雅一点的圆角 */
-    padding: 2rem;                  /* 内间距必须加，否则内容贴边 */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);  /* ⭐ 超轻柔阴影 */
-}
-
-.about-right,
-.about-stats {
-    flex: 1;
+.about-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
+    align-items: stretch;     /* ★ 左右保持同高度 */
 }
 
-.about-tag {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background: #eef3ff;
-    color: #4a5c82;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
+/* 左侧文字块 */
+.about-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* ★ 垂直居中 */
 }
 
-.about-title {
-    font-size: 2rem;
-    font-weight: 700;
+.about-left h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
     margin-bottom: 2rem;
-    color: #D7D261;
 }
 
-.about-text {
-    margin-top: 4rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.8;
-    color: #444;
+.about-left p {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 90%;
+}
+
+.cta-btn {
+    width: 13rem;
+    background: #000;
+    color: #fff;
+    padding: 0.7rem 1.6rem;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 1.3rem;
+
+    text-decoration: none;   /* 去掉下划线 */
+    display: inline-block;   /* 让 padding 生效更稳定 */
+    transition: 0.25s ease;  /* hover 动画更顺滑 */
+}
+
+/* Hover 效果 */
+.cta-btn:hover {
+    background: #D7D261;   /* 背景变金色 */
+    color: #292623;        /* 字体变深色 */
+}
+
+/* 右侧图片（或地图） */
+.about-right {
+    width: 100%;
+    height: 100%;
+}
+
+.about-right img,
+.about-right iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    display: block;
+
+    /* ✦ 玻璃质感微边框 */
+    border: 1px solid rgba(255, 255, 255, 0.35);
+
+    /* ✦ 背景轻微磨砂透明感（更像玻璃） */
+    backdrop-filter: blur(6px);
+
+    /* ✦ 高级柔和阴影 */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+
+    /* ✦ 细节过渡 */
+    transition: 0.3s ease;
+}
+
+/* 若你想加 Hover 效果（可选） */
+.about-right img:hover,
+.about-right iframe:hover {
+    transform: scale(1.015);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.32);
+}
+
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-right img,
+    .about-right iframe {
+        height: 260px;  /* 手机高度适配 */
+    }
+}
+
+
+
+/* 深色服务区块 */
+.services-section {
+    background: #292623;
+    padding: 5rem 0;
+    color: #eaeaea;
+}
+
+.services-container {
+    width: 100%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    padding: 0 5rem;
+}
+
+.service-box {
+    max-width: 75%;
+}
+
+.service-box h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #DFDACB;
+}
+
+.service-box p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #DFDACB;
+}
+
+
+/* 白色数据卡片区块 */
+.stats-section {
+    margin-top: 3rem;
+    background: #ffffff;
+    padding: 4rem 0;
+}
+
+.stats-container {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5rem;
+    padding: 0 2rem;
 }
 
 .stat-card {
-    background: #f5f7fa;
-    padding: 2.2rem 2rem;
-    border-radius: 1rem;
+    background: #fff;
+    padding: 3rem 2rem;
+    border-radius: 15px;
     text-align: center;
-    transition: 0.3s ease;
+
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    transition: 0.25s ease;
 }
 
 .stat-card:hover {
     transform: translateY(-4px);
+    box-shadow: 0 15px 26px rgba(0, 0, 0, 0.12);
 }
 
-.stat-card h3 {
-    font-size: 1.8rem;
-    color: #D7D261;
-    margin-bottom: 0.3rem;
+.stat-card h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
 }
 
 .stat-card p {
-    color: #4a5c82;
     font-size: 1rem;
+    color: #555;
 }
 
-.map-wrapper {
-    grid-column: span 2;                    /* 占 2 列宽 */
-    background: #fff;                        /* 卡片背景 */
-    border-radius: 15px;                     /* 圆角 */
-    padding: 1rem;                           /* 内边距，让 iframe 不贴边 */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); /* ⭐ 超轻阴影，和 about-left 统一 */
-    transition: transform 0.25s ease, 
-                box-shadow 0.25s ease;       /* 动画 */
+.full-image-section {
+    margin: 5rem 0; /* 上下 5rem，左右保持居中 */
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
-.map-wrapper h3{
-    color: #292623;
+.full-image-card {
+    width: 77%;                /* 可以改成你想要的宽度，比如 100% */
+    border-radius: 15px;       /* ★ 圆角 15px */
+    object-fit: cover;
+    display: block;
+
+    /* 玻璃微边框 */
+    border: 1px solid rgba(255, 255, 255, 0.35);
+
+    /* 背后的淡淡玻璃模糊质感 */
+    backdrop-filter: blur(8px);
+
+    /* 阴影（柔和高质感） */
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+
+    /* 过渡效果 */
+    transition: 0.3s ease;
 }
 
-/* 🌟 Hover 微微放大效果（和卡片一致） */
-.map-wrapper:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
-}
 
 /* ---------- TEAM SECTION ---------- */
-
-.team-section {
-    width: 100%;;
-    margin: 1rem auto 8rem auto;
-    padding: 2rem;
-    text-align: center;
+/* 上面一段介绍 */
+.team-intro {
+    margin: 5rem 0; /* 上下 5rem */
+    /* text-align: left; */
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 2rem;
 }
 
-.team-title {
-    font-size: 2rem;
+.team-intro h2 {
+    font-size: 2.4rem;
     font-weight: 700;
-    color: #1f1f1f;
+    margin-bottom: 1.5rem;
+}
+
+.team-intro p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #555;
+}
+
+.team_bg {
+    background: #eceae2;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+/* 五个卡片 */
+.team-cards {
+    background: #eceae2;
+    width: 80%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+    padding: 0 2rem;
+}
+
+/* 单个卡片 */
+.team-card {
+    background: #D7D261; /* 你截图里那个黄偏灰的颜色 */
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem 1.5rem 0 1.5rem; /* 下面不填充，让图片贴底 */
+}
+
+/* 上半部分文字 */
+.team-upper h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.team-upper h4 {
+    font-size: 1rem;
+    font-weight: 700;
     margin-bottom: 1rem;
 }
 
-.team-subtitle {
-    font-size: 1rem;
-    color: #4a5c82;
-    margin-bottom: 3rem;
-    line-height: 1.7;
-}
-
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 3rem;
-}
-
-.team-member {
-    padding: 1.5rem;
-    border-radius: 16px;
-    background: #fff;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-    transition: 0.25s ease;
-}
-
-.team-member:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 28px rgba(0,0,0,0.08);
-}
-
-.team-member img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 1.5rem;
-    border: 2px solid #252527;
-}
-
-.team-member h3 {
-    font-size: 1.2rem;
-    color: #1f1f1f;
-    margin-bottom: 0.4rem;
-}
-
-.team-member .role {
-    color: #4a5c82;
-    font-weight: 600;
-    margin-bottom: 0.6rem;
-}
-
-.team-member .desc {
+.team-upper p {
     font-size: 0.95rem;
-    color: #4a5c82;
     line-height: 1.6;
+    color: #444;
 }
+
+/* 下半部分图片区域（高度固定，自动等比放大） */
+.team-lower {
+    margin-top: 1.5rem;
+    width: 100%;
+    height: 110px; /* ★你截图中的图片高度差不多这个 */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.team-lower img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 不会裁切 */
+}
+

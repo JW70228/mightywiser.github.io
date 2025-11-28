@@ -301,3 +301,56 @@
     }
 }
 
+/* 整个区域 */
+.feature-cards {
+    width: 80%;
+    margin: 4rem auto;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
+    padding: 0 2rem;
+}
+
+/* 通用卡片样式 */
+.card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    padding-bottom: 1rem;
+}
+
+.card img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 1rem 1rem 0.3rem;
+}
+
+.card p {
+    font-size: 0.95rem;
+    color: #555;
+    margin: 0 1rem 0.8rem;
+    line-height: 1.5;
+}
+
+/* 尺寸控制（完全按你截图逻辑） */
+.card-small {
+    grid-column: span 4; /* 左边小卡 */
+}
+
+.card-medium {
+    grid-column: span 8; /* 右边宽卡 */
+}
+
+.card-large {
+    grid-column: span 12; /* 最底部整行卡 */
+}
+
+
+
