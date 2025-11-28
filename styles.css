@@ -276,7 +276,7 @@ html, body {
 }
 
 /* Hover 效果 */
-.service-card-dark :hover {
+.service-card-dark:hover {
     transform: translateY(-6px);
     box-shadow: rgba(0, 0, 0, 0.15) 0 10px 30px;
 }
