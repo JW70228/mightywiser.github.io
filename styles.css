@@ -263,6 +263,24 @@ html, body {
     box-shadow: rgba(0, 0, 0, 0.15) 0 10px 30px;
 }
 
+.service-card-dark{
+    background: var(--bg);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.08) 0 6px 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover 效果 */
+.service-card-dark :hover {
+    transform: translateY(-6px);
+    box-shadow: rgba(0, 0, 0, 0.15) 0 10px 30px;
+}
+
 /* 上半部分图片 2:3 比例 */
 .service-img {
     width: 100%;
