@@ -316,6 +316,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    
+}
+
+.team-upper {
     padding: 2rem 1.5rem 0 1.5rem; /* 下面不填充，让图片贴底 */
 }
 
@@ -341,7 +345,6 @@
 .team-lower {
     margin-top: 1.5rem;
     width: 100%;
-    height: 110px; /* ★你截图中的图片高度差不多这个 */
     display: flex;
     justify-content: center;
     align-items: flex-end;
