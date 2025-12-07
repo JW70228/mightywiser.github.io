@@ -755,7 +755,7 @@ html, body {
   /* 初始位置在右侧（8 张图片） */
   left: max(calc(350px * 8), 100%);
 
-  animation: slideLeft 25s linear infinite;
+  animation: slideLeft 45s linear infinite;
 }
 
 @keyframes slideLeft {
@@ -765,14 +765,14 @@ html, body {
 }
 
 /* 下面是关键：按照 8 张重算每个 delay */
-.i1 { animation-delay: calc(25s / 8 * (8 - 1) * -1); }
-.i2 { animation-delay: calc(25s / 8 * (8 - 2) * -1); }
-.i3 { animation-delay: calc(25s / 8 * (8 - 3) * -1); }
-.i4 { animation-delay: calc(25s / 8 * (8 - 4) * -1); }
-.i5 { animation-delay: calc(25s / 8 * (8 - 5) * -1); }
-.i6 { animation-delay: calc(25s / 8 * (8 - 6) * -1); }
-.i7 { animation-delay: calc(25s / 8 * (8 - 7) * -1); }
-.i8 { animation-delay: calc(25s / 8 * (8 - 8) * -1); }
+.i1 { animation-delay: calc(45s / 8 * (8 - 1) * -1); }
+.i2 { animation-delay: calc(45s / 8 * (8 - 2) * -1); }
+.i3 { animation-delay: calc(45s / 8 * (8 - 3) * -1); }
+.i4 { animation-delay: calc(45s / 8 * (8 - 4) * -1); }
+.i5 { animation-delay: calc(45s / 8 * (8 - 5) * -1); }
+.i6 { animation-delay: calc(45s / 8 * (8 - 6) * -1); }
+.i7 { animation-delay: calc(45s / 8 * (8 - 7) * -1); }
+.i8 { animation-delay: calc(45s / 8 * (8 - 8) * -1); }
 
 
 @media (max-width: 768px) {
