@@ -48,6 +48,60 @@
     font-weight: 700;
 }
 
+.cta-buttons-ser {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.cta-btn-primary-ser,
+.cta-btn-secondary-ser {
+    padding: 0.9rem 2.4rem;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* 主按钮：黑底白字 */
+.cta-btn-primary-ser {
+    background: #000000;
+    color: #ffffff;
+    border: 2px solid #000;
+    transition: 
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+/* 主按钮 hover：反色 → 白底黑字 */
+.cta-btn-primary-ser:hover {
+    background: #e5e19f00;
+    color: #000000;
+    border-color: #00000079;
+}
+
+/* 次按钮：白底黑字 */
+.cta-btn-secondary-ser {
+    background: #00000000;
+    border: 2px solid #00000078;
+    color: #000000;
+    transition: 
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+/* 次按钮 hover：反色 → 黑底白字 */
+.cta-btn-secondary-ser:hover {
+    background: #000000;
+    color: #ffffff;
+    border-color: #000;
+}
+
 /* GRID */
 .projects-grid {
     margin: 5rem auto;

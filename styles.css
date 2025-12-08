@@ -80,7 +80,7 @@ html, body {
     padding: 0.7rem 1.5rem;
     border-radius: 0.3rem;
     color: #000 !important;
-    font-weight: 600;
+    font-weight: 200;
 
     /* 背景+文字颜色都加动画 */
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -392,6 +392,11 @@ html, body {
     margin-bottom: 2rem;
 }
 
+.bold-title {
+    font-weight: 1300;   /* 或 900，看效果 */
+    font-size: 1.1em;  /* 稍微大一点 */
+}
+
 .solution-btn {
     margin: 0.3rem;
     display: inline-flex;              /* 让内容完美垂直居中 */
@@ -508,7 +513,7 @@ html, body {
 .dual-btn.primary,
 .dual-btn.secondary {
     background: transparent;
-    border-color: transparent;
+    border-color: #DFDACB;
     color: #DFDACB;
 }
 
@@ -673,9 +678,9 @@ html, body {
 
 /* 次按钮：白底黑字 */
 .cta-btn-secondary {
-    background: #fff;
+    background: #000000;
     border: 2px solid #000;
-    color: #000;
+    color: #ffffff;
     transition: 
         background 0.25s ease,
         color 0.25s ease,
@@ -685,8 +690,8 @@ html, body {
 
 /* 次按钮 hover：反色 → 黑底白字 */
 .cta-btn-secondary:hover {
-    background: #000;
-    color: #fff;
+    background: #ffffff;
+    color: #000000;
     border-color: #000;
 }
 
@@ -755,7 +760,7 @@ html, body {
   /* 初始位置在右侧（8 张图片） */
   left: max(calc(350px * 8), 100%);
 
-  animation: slideLeft 45s linear infinite;
+  animation: slideLeft 50s linear infinite;
 }
 
 @keyframes slideLeft {
@@ -765,14 +770,14 @@ html, body {
 }
 
 /* 下面是关键：按照 8 张重算每个 delay */
-.i1 { animation-delay: calc(45s / 8 * (8 - 1) * -1); }
-.i2 { animation-delay: calc(45s / 8 * (8 - 2) * -1); }
-.i3 { animation-delay: calc(45s / 8 * (8 - 3) * -1); }
-.i4 { animation-delay: calc(45s / 8 * (8 - 4) * -1); }
-.i5 { animation-delay: calc(45s / 8 * (8 - 5) * -1); }
-.i6 { animation-delay: calc(45s / 8 * (8 - 6) * -1); }
-.i7 { animation-delay: calc(45s / 8 * (8 - 7) * -1); }
-.i8 { animation-delay: calc(45s / 8 * (8 - 8) * -1); }
+.i1 { animation-delay: calc(50s / 8 * (8 - 1) * -1); }
+.i2 { animation-delay: calc(50s / 8 * (8 - 2) * -1); }
+.i3 { animation-delay: calc(50s / 8 * (8 - 3) * -1); }
+.i4 { animation-delay: calc(50s / 8 * (8 - 4) * -1); }
+.i5 { animation-delay: calc(50s / 8 * (8 - 5) * -1); }
+.i6 { animation-delay: calc(50s / 8 * (8 - 6) * -1); }
+.i7 { animation-delay: calc(50s / 8 * (8 - 7) * -1); }
+.i8 { animation-delay: calc(50s / 8 * (8 - 8) * -1); }
 
 
 @media (max-width: 768px) {
@@ -833,7 +838,9 @@ footer {
 }
 
 .footer-col a {
-    display: block;
+    gap: 0.5rem;
+    align-items: center;
+    display: flex;
     font-size: 0.95rem;
     color: #555;
     margin-bottom: 0.7rem;
@@ -843,6 +850,12 @@ footer {
 
 .footer-col a:hover {
     color: var(--bg);
+}
+
+.footer-col img {
+    height: 1.2em;       /* 和字一样高 */
+    width: auto;       /* 保持比例 */
+    object-fit: contain;
 }
 
 /* 社交图标 */
@@ -867,7 +880,7 @@ footer {
 /* --- 下半部分（黄色） --- */
 .footer-bottom {
     background: var(--text);
-    padding: 2rem 2rem;
+    padding: 0.6rem 0.6rem;
     display: flex;
     justify-content: space-between;
     align-items: center;

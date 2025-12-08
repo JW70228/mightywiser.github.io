@@ -183,6 +183,7 @@
 
 .service-box {
     max-width: 75%;
+    text-align: center;
 }
 
 .service-box h3 {
@@ -231,8 +232,8 @@
 }
 
 .stat-card h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-size: 2.8rem;
+    font-weight: 900;
     color: #1a1a1a;
     margin-bottom: 0.5rem;
 }
@@ -301,7 +302,7 @@
 /* 五个卡片 */
 .team-cards {
     background: #eceae2;
-    width: 80%;
+    width: 90%;
     margin: auto;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -325,18 +326,18 @@
 
 /* 上半部分文字 */
 .team-upper h3 {
-    font-size: 1.6rem;
-    font-weight: 700;
+    font-size: 2.2rem;
+    font-weight: 800;
 }
 
 .team-upper h4 {
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
 }
 
 .team-upper p {
-    font-size: 0.95rem;
+    font-size: 1。2rem;
     line-height: 1.6;
     color: #444;
 }
