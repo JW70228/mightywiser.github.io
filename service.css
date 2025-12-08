@@ -1,42 +1,37 @@
-/* ===== Section Layout ===== */
+/* ============================
+   PROJECTS SECTION（顶部三张翻牌卡片）
+   ============================ */
+
 .projects-section {
-    width: 80%;
-    margin: 10rem auto 1rem auto;
-    padding: 10rem 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 10rem auto 6rem auto;      /* 避开导航，高度适中 */
+    padding: 4rem 2rem 6rem 2rem;
     font-family: "MiSans VF Regular", system-ui, sans-serif;
 }
 
-/* ----- Header 部分 ----- */
+/* Header 部分 */
 .projects-header {
     text-align: center;
     margin-bottom: 4rem;
 }
 
-.projects-tag {
-    display: inline-block;
-    padding: 0.4rem 1rem;
-    background: #f4f4e5;
-    color: #7a7a5c;
-    font-size: 0.9rem;
-    border-radius: 6px;
-    letter-spacing: 1px;
-}
-
 .projects-header h2 {
-    margin: 1rem 0;
-    font-size: 6rem;
+    margin: 0.2rem 0;
+    font-size: clamp(2.4rem, 5vw, 3.4rem);
     font-weight: 800;
     color: #333;
 }
 
 .projects-header p {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: #666;
     max-width: 700px;
-    margin: 0 auto;
+    margin: 1.2rem auto 0 auto;
+    line-height: 1.7;
 }
 
-/* ===== Grid 部分 ===== */
+/* Grid */
 .projects-grid {
     width: 100%;
     display: grid;
@@ -44,75 +39,68 @@
     gap: 2.5rem;
 }
 
-/* ===== 1. 最外层：3D 舞台 (Scene) ===== */
+/* ===== 3D 翻牌卡片基础 ===== */
 .project-card {
-    background-color: transparent; /* 背景透明，让 inner 决定颜色 */
-    perspective: 1000px; /* 开启 3D 空间感 */
+    background-color: transparent;
+    perspective: 1000px;
     cursor: pointer;
-    height: auto; 
-    /* 恢复或添加过渡效果，用于处理 translateY 的上浮动画 */
-    transition: transform 0.25s ease; 
+    height: auto;
+    transition: transform 0.25s ease;
 }
 
-/* ===== 2. 中间层：负责旋转 (Wrapper) ===== */
 .card-inner {
     position: relative;
     width: 100%;
     height: 100%;
     text-align: left;
-    transition: transform 0.6s; /* 翻转动画时间 */
-    transform-style: preserve-3d; /* 关键：保留子元素的 3D 空间 */
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
 }
 
-/* JS 会切换这个类来实现翻转 */
+/* 点击后翻转 */
 .project-card.is-flipped .card-inner {
     transform: rotateY(180deg);
 }
 
-/* ===== 3. 内层：正面和背面公共样式 (Faces) ===== */
-.card-front, .card-back {
+/* 正反面公共样式 */
+.card-front,
+.card-back {
     width: 100%;
-    /* 背面必须绝对定位，才能和正面重叠 */
-    backface-visibility: hidden; /* 关键：背对屏幕时隐藏 */
+    backface-visibility: hidden;
     border-radius: 12px;
     box-shadow: 0 6px 25px rgba(0,0,0,0.12);
-    overflow: hidden; /* 圆角裁切 */
+    overflow: hidden;
     background: #fff;
-    
-    /* 确保阴影和过渡效果在这里定义，以便它们能随着 hover 一起变化 */
     transition: box-shadow 0.25s ease;
 }
 
-/* --- 正面样式 (Front) --- */
+/* 正面 */
 .card-front {
     z-index: 2;
-    transform: rotateY(0deg); /* 默认角度 */
+    transform: rotateY(0deg);
 }
 
-/* --- 背面样式 (Back) --- */
+/* 背面 */
 .card-back {
     position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%; /* 填满容器 */
-    transform: rotateY(180deg); /* 默认就已经转过去了 */
-    
-    /* 背面内容的排版 */
+    inset: 0;
+    transform: rotateY(180deg);
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 2rem;
-    background: #333; /* 背面颜色 */
-    color: #fff;      /* 文字白色 */
+    background: #333;
+    color: #fff;
     text-align: center;
 }
 
-/* 背面内容的一些简单样式 */
 .card-back h3 {
     margin-bottom: 1rem;
     font-size: 1.5rem;
 }
+
 .card-back .back-btn {
     margin-top: 1.5rem;
     padding: 0.8rem 1.5rem;
@@ -123,45 +111,47 @@
     cursor: pointer;
 }
 
-/* 🚀 交互优化：只有未翻转时，卡片才会上浮 */
+/* hover 上浮效果（未翻转时才生效） */
 .project-card:hover:not(.is-flipped) {
     transform: translateY(-5px);
 }
 
-/* 🚀 交互优化：只有未翻转时，卡面的阴影才会加深 */
 .project-card:hover:not(.is-flipped) .card-front,
 .project-card:hover:not(.is-flipped) .card-back {
     box-shadow: 0 10px 35px rgba(0,0,0,0.18);
 }
 
-
-/* ===== 图片部分 (保留原有的所有样式) ===== */
+/* 图片 */
 .project-img {
     width: 100%;
     aspect-ratio: 2 / 1;
     overflow: hidden;
 }
+
 .project-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-/* ===== 文本部分 (保留原有的所有样式) ===== */
+/* 文案部分 */
 .project-content {
     padding: 1.8rem;
 }
+
 .project-content h3 {
     font-size: 1.3rem;
     font-weight: 700;
     margin-bottom: 1rem;
     color: #333;
 }
+
 .project-content p {
     color: #666;
     font-size: 0.98rem;
     line-height: 1.6;
 }
+
 .project-icon {
     width: 48px;
     height: 48px;
@@ -171,20 +161,41 @@
     margin-bottom: 1rem;
 }
 
-/* 手机端 */
+/* Projects 响应式 */
+@media (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
+    .projects-section {
+        max-width: 100%;
+        margin: 9rem auto 4rem auto;
+        padding: 3.5rem 1.5rem 4rem;
+    }
+
+    .projects-header h2 {
+        font-size: 2.2rem;
+    }
+
+    .projects-header p {
+        font-size: 0.98rem;
+    }
+
     .projects-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
 }
 
+
 /* ===========================
-   WHY CHOOSE US — Dark Section
+   WHY CHOOSE US — 深色区块
    =========================== */
 
 .why-section {
-    background: #1e1c19; /* 深色背景 */
+    background: #1e1c19;
     padding: 8rem 0;
     color: #f6f6f4;
 }
@@ -193,15 +204,7 @@
 .why-header {
     text-align: center;
     margin-bottom: 5rem;
-}
-
-.why-tag {
-    display: inline-block;
-    padding: 0.4rem 1rem;
-    background: #d7d26130;
-    color: #d7d261;
-    font-size: 0.9rem;
-    border-radius: 5px;
+    padding: 0 2rem;
 }
 
 .why-header h2 {
@@ -211,24 +214,27 @@
 }
 
 .why-header p {
-    font-size: 1.1rem;
-    
+    font-size: 1.05rem;
+    max-width: 700px;
     margin: 0 auto;
     color: #ccc;
+    line-height: 1.7;
 }
 
 /* Grid */
 .why-grid {
-    width: 80%;
+    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2.5rem;
+    padding: 0 2rem;
 }
 
 .why-card {
     background: #24221f;
-    padding: 5rem 2.5rem;
+    padding: 3rem 2.5rem;
     border-radius: 12px;
     border: 1px solid #3a3733;
     transition: 0.25s ease;
@@ -239,7 +245,6 @@
     background: #2b2925;
 }
 
-/* ICON */
 .why-icon {
     width: 54px;
     height: 54px;
@@ -260,75 +265,59 @@
     line-height: 1.6;
 }
 
-/* Banner */
-.why-banner {
-    margin-top: 5rem;
-    padding: 3rem 2rem;
-    background: #3b3a22;
-    border-left: 6px solid #d7d261;
-    text-align: center;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 8px;
-}
-
-.why-banner h3 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-}
-
-.why-banner p {
-    max-width: 900px;
-    margin: 0 auto;
-    line-height: 1.7;
-    color: #e6e6e6;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
+/* Why 响应式 */
+@media (max-width: 1024px) {
     .why-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
+}
 
+@media (max-width: 768px) {
     .why-section {
         padding: 5rem 0;
     }
 
-    .why-banner {
-        width: 90%;
+    .why-grid {
+        grid-template-columns: 1fr;
+        padding: 0 1.5rem;
+    }
+
+    .why-header h2 {
+        font-size: 2.2rem;
     }
 }
 
+
+/* ===========================
+   CTA BANNER (cta-section-ser)
+   =========================== */
+
 .cta-section-ser {
-    margin:0rem auto 6rem  auto;
+    margin: 0 auto 6rem auto;
     padding: 6rem 2rem;
-    background: #e5e29f;  /* 和网站背景一样，造成视觉差 */
+    background: #e5e29f;
 }
 
 .cta-container-ser {
-    max-width: 70%;
+    max-width: 900px;
     margin: 0 auto;
-    text-align: center;  /* PC 端标题、副标题居中 */
+    text-align: center;
 }
 
-/* 大标题 */
 .cta-title-ser {
-    font-size: 4rem;
+    font-size: 3.2rem;
     font-weight: 800;
-    line-height: 1;
+    line-height: 1.1;
     font-family: "MiSans VF Regular", system-ui, sans-serif;
 }
 
-/* 副标题 */
 .cta-subtitle-ser {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     color: #8b884c;
     margin-top: 1.2rem;
+    line-height: 1.6;
 }
 
-/* 按钮区域（PC 横排） */
 .cta-buttons-ser {
     margin-top: 2.5rem;
     display: flex;
@@ -357,14 +346,13 @@
         transform 0.25s ease;
 }
 
-/* 主按钮 hover：反色 → 白底黑字 */
 .cta-btn-primary-ser:hover {
     background: #e5e29f;
     color: #000000;
     border-color: #8b884c;
 }
 
-/* 次按钮：白底黑字 */
+/* 次按钮：浅黄底黑字 */
 .cta-btn-secondary-ser {
     background: #e5e29f;
     border: 2px solid #8b884c;
@@ -376,79 +364,77 @@
         transform 0.25s ease;
 }
 
-/* 次按钮 hover：反色 → 黑底白字 */
 .cta-btn-secondary-ser:hover {
     background: #000000;
     color: #ffffff;
     border-color: #000;
 }
 
-
-
-
-/* ============================
-   MOBILE VERSION
-   Like your second screenshot
-   ============================ */
+/* CTA 响应式 */
 @media (max-width: 768px) {
-
-    .cta-section {
+    .cta-section-ser {
         padding: 4rem 1.5rem;
     }
 
-    /* 标题更紧凑一点 */
-    .cta-title {
-        font-size: 2.2rem;
-        line-height: 1.3;
-        text-align: center;
+    .cta-title-ser {
+        font-size: 2.4rem;
+        line-height: 1.25;
     }
 
-    .cta-subtitle {
-        font-size: 1rem;
+    .cta-subtitle-ser {
+        font-size: 1.05rem;
         margin-top: 1rem;
-        text-align: center;
     }
 
-    /* Mobile 下按钮竖排 */
-    .cta-buttons {
-        display: block;      /* ← 直接 block，不用 flex */
+    .cta-buttons-ser {
+        flex-direction: column;
+        align-items: center;
         margin-top: 2rem;
-        text-align: center;  /* 按钮内部居中 */
     }
 
-    .cta-btn-primary,
-    .cta-btn-secondary {
+    .cta-btn-primary-ser,
+    .cta-btn-secondary-ser {
         width: 100%;
-        max-width: 320px;          /* optional：不拉满全屏，更美观 */
-        margin: 0.7rem auto;
-        display: block;
-        padding: 1rem;
+        max-width: 320px;
+        margin: 0.4rem auto;
+        text-align: center;
     }
 }
 
-/* 整个区域 */
+
+/* ===========================
+   FEATURE CARDS（底部三张图）
+   =========================== */
+
 .feature-cards {
-    width: 80%;
-    margin: 4rem auto;
+    width: 100%;
+    max-width: 1200px;
+    margin: 4rem auto 6rem auto;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: 2rem;
     padding: 0 2rem;
 }
 
-/* 通用卡片样式 */
 .card {
     background: #fff;
     border-radius: 15px;
     overflow: hidden;
     padding-bottom: 1rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.12);
 }
 
 .card img {
     width: 100%;
     height: 400px;
     object-fit: cover;
-    border-radius: 15px;
+    border-radius: 15px 15px 0 0;
 }
 
 .card h3 {
@@ -464,18 +450,43 @@
     line-height: 1.5;
 }
 
-/* 尺寸控制（完全按你截图逻辑） */
+/* 布局比例：4 / 8 / 12 */
 .card-small {
-    grid-column: span 4; /* 左边小卡 */
+    grid-column: span 4;
 }
 
 .card-medium {
-    grid-column: span 8; /* 右边宽卡 */
+    grid-column: span 8;
 }
 
 .card-large {
-    grid-column: span 12; /* 最底部整行卡 */
+    grid-column: span 12;
 }
 
+/* Feature 响应式 */
+@media (max-width: 1024px) {
+    .card-small {
+        grid-column: span 6;
+    }
 
+    .card-medium {
+        grid-column: span 6;
+    }
+}
 
+@media (max-width: 768px) {
+    .feature-cards {
+        grid-template-columns: 1fr;
+        padding: 0 1.5rem;
+    }
+
+    .card-small,
+    .card-medium,
+    .card-large {
+        grid-column: auto;
+    }
+
+    .card img {
+        height: 240px;
+    }
+}

@@ -1,9 +1,17 @@
 /* ================================
-   PROJECTS SECTION
+   PROJECTS SECTION 外层
 ================================ */
 
-/* HEADER */
-/* ===== Hero Section ===== */
+.projects-section {
+    width: 100%;
+    margin: 0 0 6rem 0;
+    font-family: "MiSans VF Regular", system-ui, sans-serif;
+}
+
+/* ================================
+   顶部 Hero1 区块
+================================ */
+
 .hero1 {
     width: 100%;
     height: 70vh;
@@ -18,24 +26,25 @@
     text-align: center;
 
     position: relative;
-    margin-top: 8rem;
-    overflow: hidden;   /* 避免遮罩溢出 */
+    margin-top: 8rem;       /* 避开固定导航栏 */
+    overflow: hidden;
 }
 
-/* 让文字在遮罩上方 */
+/* 让文字在前景 */
 .hero1 * {
     position: relative;
     z-index: 2;
 }
 
 .hero1-content h2 {
-    color: #292623;  /* 白色文字 */
-    font-size: 4.5rem;
-    line-height: 0.4;
+    color: #292623;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    line-height: 1.1;      /* ✅ 修正原来 0.4，避免两行挤在一起 */
     font-family: "MiSans VF Regular", system-ui, sans-serif;
     font-weight: 700;
 }
 
+/* 顶部 Hero 的按钮组（复用 service 那套命名） */
 .cta-buttons-ser {
     margin-top: 2.5rem;
     display: flex;
@@ -57,52 +66,79 @@
     background: #000000;
     color: #ffffff;
     border: 2px solid #000;
-    transition: 
+    transition:
         background 0.25s ease,
         color 0.25s ease,
         border-color 0.25s ease,
         transform 0.25s ease;
 }
 
-/* 主按钮 hover：反色 → 白底黑字 */
 .cta-btn-primary-ser:hover {
-    background: #e5e19f00;
+    background: transparent;
     color: #000000;
     border-color: #00000079;
 }
 
-/* 次按钮：白底黑字 */
+/* 次按钮：透明边框 */
 .cta-btn-secondary-ser {
-    background: #00000000;
+    background: transparent;
     border: 2px solid #00000078;
     color: #000000;
-    transition: 
+    transition:
         background 0.25s ease,
         color 0.25s ease,
         border-color 0.25s ease,
         transform 0.25s ease;
 }
 
-/* 次按钮 hover：反色 → 黑底白字 */
 .cta-btn-secondary-ser:hover {
     background: #000000;
     color: #ffffff;
     border-color: #000;
 }
 
-/* GRID */
+/* Hero1 手机端优化 */
+@media (max-width: 768px) {
+    .hero1 {
+        margin-bottom: -8vh;
+        height: 60vh;
+        padding: 2rem 1.5rem;
+        align-items: flex-start;
+    }
+
+    .hero1-content h2 {
+        font-size: 2.2rem;
+    }
+
+    .cta-buttons-ser {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cta-btn-primary-ser,
+    .cta-btn-secondary-ser {
+        width: 100%;
+        max-width: 180px;
+    }
+}
+
+
+/* ================================
+   PROJECT GRID
+================================ */
+
 .projects-grid {
     margin: 5rem auto;
-    width: 80%;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 2rem;
+
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2.5rem;
 }
 
-/* ================================
-   PROJECT CARD — 最新优化版
-================================ */
-
+/* 项目卡片（背景图 + 覆盖层） */
 .project-card {
     position: relative;
     border-radius: 12px;
@@ -135,19 +171,17 @@
     background-repeat: inherit;
     background-image: inherit;
 
-    /* 黑色滤镜（你可以改 0.15 → 深一点） */
     filter: brightness(0.85);
-
     transform: scale(1);
     transition: transform 0.45s ease, filter 0.3s ease;
 
     z-index: 1;
 }
 
-/* Hover 时背景轻微放大，滤镜稍微加深 */
+/* Hover 时背景轻微放大、稍暗一点 */
 .project-card:hover::before {
     transform: scale(1.06);
-    filter: brightness(0.75); /* 稍暗一点，让字更清晰 */
+    filter: brightness(0.75);
 }
 
 /* 标签 */
@@ -166,16 +200,14 @@
     z-index: 5;
 }
 
-/* 文本区 */
+/* 信息区 */
 .project-info {
     position: absolute;
     bottom: 1.2rem;
     left: 1.2rem;
-
     color: white;
     z-index: 5;
-
-    transition: transform 0.35s ease; /* ★ 文本动画 */
+    transition: transform 0.35s ease;
 }
 
 .project-info h3 {
@@ -193,39 +225,43 @@
     transform: translateY(-6px);
 }
 
-/* Mobile */
-@media (max-width: 768px) {
+/* Grid 响应式 */
+@media (max-width: 1024px) {
     .projects-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* 整体背景 */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+        padding: 0 1.5rem;
+        margin: 0.5rem auto 5rem auto;
+    }
+}
+
+
+/* ================================
+   SPLIT HERO（底部黑色区）
+================================ */
+
 .split-hero {
     width: 100%;
     background: #292623;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-}
-
-.split-hero h1 {
-    color: #D7D261;
-    font-size: 3rem;
-}
-
-.split-hero p {
-    color: #e5e4c8;
-    font-size: 1.5rem;
-    line-height: 0.4;
+    padding: 5rem 0;
 }
 
 /* 80% 居中容器 */
 .split-wrapper {
-    width: 80%;
+    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 0 2rem;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 3rem;
 }
 
 /* 左侧文字 */
@@ -233,11 +269,26 @@
     flex: 1;
 }
 
+.split-hero h1 {
+    color: #D7D261;
+    font-size: clamp(2.4rem, 4vw, 3rem);
+    margin-bottom: 1.5rem;
+}
+
+/* 把原来 line-height: 0.4 修掉，正常排版 */
+.split-hero p {
+    color: #e5e4c8;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
 /* 按钮组 */
 .btn-group {
-    margin-top: 3rem;
+    margin-top: 2.5rem;
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .cta-btn {
@@ -246,7 +297,7 @@
     background: transparent;
     color: #D7D261;
     border: 2px solid #DFDACB;
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     cursor: pointer;
     transition: 0.25s;
 }
@@ -261,12 +312,10 @@
 .split-right {
     flex: 1;
     display: flex;
-    justify-content:end;
+    justify-content: flex-end;
 }
 
-/* 让图片按比例缩小不裁切 */
 .img-box {
-    height: 80%;
     width: 80%;
     border-radius: 15px;
     overflow: hidden;
@@ -274,23 +323,41 @@
 }
 
 .img-box img {
-    object-fit: cover;
-    display: block;
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
-/* 让手机更美观 */
+/* Split Hero 手机端优化 */
 @media (max-width: 768px) {
+    .split-hero {
+        padding: 4rem 0 5rem 0;
+    }
+
     .split-wrapper {
         flex-direction: column;
         text-align: center;
-        gap: 2rem;
+        padding: 0 1.5rem;
+    }
+
+    .split-left {
+        order: 1;
+    }
+
+    .split-right {
+        order: 2;
+        justify-content: center;
+        width: 100%;
     }
 
     .img-box {
-        max-width: 100%;
+        width: 100%;
+        max-width: 420px;
+        margin-top: 2rem;
+    }
+
+    .btn-group {
+        justify-content: center;
     }
 }
-
-

@@ -21,11 +21,8 @@
 .hero1::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(60, 60, 60, 0.087); /* 透明度在这里调，0.35=35%黑色遮罩 */
+    inset: 0;
+    background: rgba(60, 60, 60, 0.15);
     z-index: 1;
 }
 
@@ -35,67 +32,81 @@
     z-index: 2;
 }
 
-
 .hero1-content h1 {
-    color: #ffffff;  /* 白色文字 */
-    font-size: 5rem;
-    line-height: 0.4;
+    color: #ffffff;
+    font-size: 4.2rem;
+    line-height: 1.1; /* ✅ 防止跟 h2 挤在一起 */
     font-family: "MiSans VF Regular", system-ui, sans-serif;
     font-weight: 600;
-
-    /* 黑色阴影：柔和但明显 */
     text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
 }
 
 .hero1-content h2 {
-    color: #ffffff;  /* 白色文字 */
-    font-size: 3.8rem;
-    line-height: 1.2;
+    color: #ffffff;
+    font-size: 2.4rem;
+    line-height: 1.3;
     font-family: "MiSans VF Regular", system-ui, sans-serif;
     font-weight: 400;
-
-    /* 黑色阴影（稍弱一点但统一风格） */
     text-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
 }
 
+@media (max-width: 768px) {
+    .hero1 {
+        height: 55vh;
+        margin-top: 8rem;
+        padding: 0 1.5rem;
+    }
 
-/* ABOUT SECTION */
-/* 外层：整体左右布局 */
-/* 整体左右布局 */
+    .hero1-content h1 {
+        font-size: 2.6rem;
+    }
+
+    .hero1-content h2 {
+        font-size: 1.4rem;
+    }
+}
+
+
+/* ========================
+   ABOUT SECTION
+   ======================== */
+
 .about-section {
     width: 100%;
-    padding: 3rem 5rem;
-    margin-top: 8rem;
-    margin-bottom: 8rem;
+    padding: 6rem 2rem;
+    margin: 0 auto 6rem auto;
 }
 
 .about-grid {
+    max-width: 1200px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: stretch;     /* ★ 左右保持同高度 */
+    gap: 2.5rem;
+    align-items: stretch;
 }
 
 /* 左侧文字块 */
 .about-left {
     display: flex;
     flex-direction: column;
-    justify-content: center;  /* ★ 垂直居中 */
+    justify-content: center;
 }
 
 .about-left h2 {
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: 800;
-    margin-bottom: 2rem;
+    margin-bottom: 1.8rem;
 }
 
 .about-left p {
-    font-size: 1.5rem;
-    line-height: 1.6;
+    font-size: 1.1rem;
+    line-height: 1.7;
     margin-bottom: 2rem;
-    max-width: 90%;
+    max-width: 95%;
 }
 
+/* CTA 按钮 */
 .cta-btn {
     width: 13rem;
     background: #000;
@@ -103,20 +114,19 @@
     padding: 0.7rem 1.6rem;
     border-radius: 15px;
     text-align: center;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
 
-    text-decoration: none;   /* 去掉下划线 */
-    display: inline-block;   /* 让 padding 生效更稳定 */
-    transition: 0.25s ease;  /* hover 动画更顺滑 */
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.25s ease;
 }
 
-/* Hover 效果 */
 .cta-btn:hover {
-    background: #D7D261;   /* 背景变金色 */
-    color: #292623;        /* 字体变深色 */
+    background: #D7D261;
+    color: #292623;
 }
 
-/* 右侧图片（或地图） */
+/* 右侧图片/地图 */
 .about-right {
     width: 100%;
     height: 100%;
@@ -130,42 +140,49 @@
     border-radius: 15px;
     display: block;
 
-    /* ✦ 玻璃质感微边框 */
     border: 1px solid rgba(255, 255, 255, 0.35);
-
-    /* ✦ 背景轻微磨砂透明感（更像玻璃） */
     backdrop-filter: blur(6px);
-
-    /* ✦ 高级柔和阴影 */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-
-    /* ✦ 细节过渡 */
     transition: 0.3s ease;
 }
 
-/* 若你想加 Hover 效果（可选） */
 .about-right img:hover,
 .about-right iframe:hover {
     transform: scale(1.015);
     box-shadow: 0 12px 26px rgba(0, 0, 0, 0.32);
 }
 
-
-/* 响应式 */
+/* 手机端 ABOUT 栏 */
 @media (max-width: 768px) {
+    .about-section {
+        padding: 4rem 1.5rem;
+        margin-bottom: 4rem;
+    }
+
     .about-grid {
         grid-template-columns: 1fr;
     }
 
+    .about-left h2 {
+        font-size: 2.2rem;
+    }
+
+    .about-left p {
+        font-size: 1rem;
+        max-width: 100%;
+    }
+
     .about-right img,
     .about-right iframe {
-        height: 260px;  /* 手机高度适配 */
+        height: 260px;
     }
 }
 
 
+/* ========================
+   深色 SERVICES SECTION
+   ======================== */
 
-/* 深色服务区块 */
 .services-section {
     background: #292623;
     padding: 5rem 0;
@@ -174,15 +191,15 @@
 
 .services-container {
     width: 100%;
-    margin: auto;
+    max-width: 1200px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2.5rem;
-    padding: 0 5rem;
+    padding: 0 2rem;
 }
 
 .service-box {
-    max-width: 75%;
     text-align: center;
 }
 
@@ -199,12 +216,28 @@
     color: #DFDACB;
 }
 
+/* Services 响应式 */
+@media (max-width: 1024px) {
+    .services-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
-/* 白色数据卡片区块 */
+@media (max-width: 768px) {
+    .services-container {
+        grid-template-columns: 1fr;
+        padding: 0 1.5rem;
+    }
+}
+
+
+/* ========================
+   白色数据卡片区块
+   ======================== */
+
 .stats-section {
-    margin-top: 3rem;
     background: #ffffff;
-    padding: 4rem 0;
+    padding: 4rem 0 5rem 0;
 }
 
 .stats-container {
@@ -212,7 +245,7 @@
     margin: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 5rem;
+    gap: 3rem;
     padding: 0 2rem;
 }
 
@@ -243,38 +276,57 @@
     color: #555;
 }
 
+/* Stats 响应式 */
+@media (max-width: 1024px) {
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-container {
+        grid-template-columns: 1fr;
+        padding: 0 1.5rem;
+    }
+}
+
+
+/* ========================
+   大图 Section
+   ======================== */
+
 .full-image-section {
-    margin: 5rem 0; /* 上下 5rem，左右保持居中 */
+    margin: 5rem 0;
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
 .full-image-card {
-    width: 77%;                /* 可以改成你想要的宽度，比如 100% */
-    border-radius: 15px;       /* ★ 圆角 15px */
+    width: 77%;
+    border-radius: 15px;
     object-fit: cover;
     display: block;
 
-    /* 玻璃微边框 */
     border: 1px solid rgba(255, 255, 255, 0.35);
-
-    /* 背后的淡淡玻璃模糊质感 */
     backdrop-filter: blur(8px);
-
-    /* 阴影（柔和高质感） */
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
-
-    /* 过渡效果 */
     transition: 0.3s ease;
 }
 
+@media (max-width: 768px) {
+    .full-image-card {
+        width: 92%;
+    }
+}
 
-/* ---------- TEAM SECTION ---------- */
-/* 上面一段介绍 */
+
+/* ========================
+   TEAM INTRO
+   ======================== */
+
 .team-intro {
-    margin: 5rem 0; /* 上下 5rem */
-    /* text-align: left; */
+    margin: 5rem 0;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -293,16 +345,35 @@
     color: #555;
 }
 
-.team_bg {
-    background: #eceae2;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+@media (max-width: 768px) {
+    .team-intro {
+        width: 100%;
+        padding: 0 1.5rem;
+    }
+
+    .team-intro h2 {
+        font-size: 2rem;
+    }
+
+    .team-intro p {
+        font-size: 1rem;
+    }
 }
 
-/* 五个卡片 */
+
+/* ========================
+   TEAM CARDS
+   ======================== */
+
+.team_bg {
+    background: #eceae2;
+    padding: 5rem 0;
+}
+
 .team-cards {
     background: #eceae2;
     width: 90%;
+    max-width: 1300px;
     margin: auto;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -310,39 +381,35 @@
     padding: 0 2rem;
 }
 
-/* 单个卡片 */
 .team-card {
-    background: #D7D261; /* 你截图里那个黄偏灰的颜色 */
+    background: #D7D261;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    
 }
 
 .team-upper {
-    padding: 2rem 1.5rem 0 1.5rem; /* 下面不填充，让图片贴底 */
+    padding: 2rem 1.5rem 0 1.5rem;
 }
 
-/* 上半部分文字 */
 .team-upper h3 {
-    font-size: 2.2rem;
+    font-size: 2.0rem;
     font-weight: 800;
 }
 
 .team-upper h4 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 700;
     margin-bottom: 1rem;
 }
 
 .team-upper p {
-    font-size: 1。2rem;
+    font-size: 1.0rem; /* ✅ 修正原来的中文句号 bug */
     line-height: 1.6;
     color: #444;
 }
 
-/* 下半部分图片区域（高度固定，自动等比放大） */
 .team-lower {
     margin-top: 1.5rem;
     width: 100%;
@@ -354,6 +421,25 @@
 .team-lower img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* 不会裁切 */
+    object-fit: contain;
 }
 
+/* Team 响应式 */
+@media (max-width: 1200px) {
+    .team-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .team-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .team-cards {
+        grid-template-columns: 1fr;
+        padding: 0 1.5rem;
+    }
+}
