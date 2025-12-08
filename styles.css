@@ -534,17 +534,15 @@ html, body {
 
 @media (max-width: 768px) {
 
-
-    /* 彻底解除 flex，和 black section 行为统一 */
+    /* ====== SOLUTION SECTION 手机端 ====== */
     .solution-section {
-        display: block !important;     /* ★ 关键修复：不再 flex */
+        display: block !important;
         width: 100%;
         padding: 3rem 1.5rem;
         box-sizing: border-box;
         min-height: 500px !important;
     }
 
-    /* 让内容块成为正常容器 */
     .solution-content {
         width: 100%;
         max-width: none;
@@ -553,7 +551,6 @@ html, body {
         box-sizing: border-box;
     }
 
-    /* 标题和黑色区完全一致 */
     .solution-content h2 {
         font-size: 2rem;
         line-height: 1.3;
@@ -561,28 +558,22 @@ html, body {
         text-align: left;
     }
 
-    /* 按钮和 black section 一模一样 */
     .solution-buttons {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         gap: 0.8rem;
-        width: auto;
+        width: 100%;
         margin-top: 1rem;
     }
 
-    .btn-primary,
-    .btn-secondary {
-        width: auto;
-        text-align: left;
+    /* ⭐ 统一 solution 两个按钮的宽度 */
+    .solution-buttons .solution-btn {
+        width: 100%;
+        max-width: 200px;
     }
 
-
-
-    /* ==========================
-       Dual Section (保持你已有的)
-       ========================== */
-
+    /* ====== DUAL SECTION 手机端 ====== */
     .dual-section {
         grid-template-columns: 1fr;
         height: auto;
@@ -600,13 +591,20 @@ html, body {
         flex-direction: column;
         gap: 0.8rem;
         align-items: flex-start;
-        width: auto;
+        width: 100%;
+    }
+
+    /* ⭐ 统一 dual 两个按钮的宽度 */
+    .dual-buttons .dual-btn {
+        width: 100%;
+        max-width: 200px;
     }
 
     .dual-right {
         display: none;
     }
 }
+
 
 /* ============================
    CTA Section (Builder Wiser)
