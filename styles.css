@@ -127,9 +127,9 @@ html, body {
 /* ===== Mobile 抽屉菜单（默认隐藏 + 在屏外）===== */
 .mobile-menu {
     position: fixed;
-    top: 10rem;                /* 紧贴导航栏下边缘 */
+    top: 8rem;                /* 紧贴导航栏下边缘 */
     right: 0;
-    width: 16rem;
+    width: 12rem;
     max-width: 70vw;
     height: calc(100vh - 4.5rem);
     background: var(--bg);
@@ -160,6 +160,8 @@ html, body {
 
 /* ===== 响应式：小屏幕用 mobile 菜单 ===== */
 @media (max-width: 53.125rem) {      /* 850px */
+    .navbar { height: 8rem; }
+    .logo img { height: 5rem; max-height: 5rem; }
     .nav-links {
         display: none;
     }
@@ -296,6 +298,9 @@ html, body {
 
 /* 文字内容部分 */
 .service-content {
+    height: 55%;
+    display: flex;
+    flex-direction: column;
     padding: 1.8rem;
 }
 
@@ -317,6 +322,7 @@ html, body {
 
 /* call to action */
 .service-link {
+    margin-top: auto;
     color: var(--bg);
     font-weight: 600;
     font-size: 0.95rem;
@@ -758,7 +764,7 @@ html, body {
   /* 初始位置在右侧（8 张图片） */
   left: max(calc(350px * 8), 100%);
 
-  animation: slideLeft 50s linear infinite;
+  animation: slideLeft 66s linear infinite;
 }
 
 @keyframes slideLeft {
@@ -768,14 +774,14 @@ html, body {
 }
 
 /* 下面是关键：按照 8 张重算每个 delay */
-.i1 { animation-delay: calc(50s / 8 * (8 - 1) * -1); }
-.i2 { animation-delay: calc(50s / 8 * (8 - 2) * -1); }
-.i3 { animation-delay: calc(50s / 8 * (8 - 3) * -1); }
-.i4 { animation-delay: calc(50s / 8 * (8 - 4) * -1); }
-.i5 { animation-delay: calc(50s / 8 * (8 - 5) * -1); }
-.i6 { animation-delay: calc(50s / 8 * (8 - 6) * -1); }
-.i7 { animation-delay: calc(50s / 8 * (8 - 7) * -1); }
-.i8 { animation-delay: calc(50s / 8 * (8 - 8) * -1); }
+.i1 { animation-delay: calc(66s / 8 * (8 - 1) * -1); }
+.i2 { animation-delay: calc(66s / 8 * (8 - 2) * -1); }
+.i3 { animation-delay: calc(66s / 8 * (8 - 3) * -1); }
+.i4 { animation-delay: calc(66s / 8 * (8 - 4) * -1); }
+.i5 { animation-delay: calc(66s / 8 * (8 - 5) * -1); }
+.i6 { animation-delay: calc(66s / 8 * (8 - 6) * -1); }
+.i7 { animation-delay: calc(66s / 8 * (8 - 7) * -1); }
+.i8 { animation-delay: calc(66s / 8 * (8 - 8) * -1); }
 
 
 @media (max-width: 768px) {
